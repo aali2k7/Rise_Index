@@ -36,11 +36,22 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="hero-title">Our Effort. Your Rise.</h1>
-            <p class="hero-tagline">Excellence in academic coaching through proven methodologies and personalized instruction. Building the foundation for your success.</p>
+            <p class="hero-tagline">A premier coaching institute dedicated to academic excellence. We provide structured learning programs, expert faculty, and proven methodologies to help students achieve their educational goals.</p>
             <div class="hero-buttons">
                 <button class="cta-button cta-primary" onclick="scrollToSection('contact')">Enquire Now</button>
-                <button class="cta-button cta-secondary" onclick="scrollToSection('courses')">View Courses</button>
+                <button class="cta-button cta-secondary" onclick="scrollToSection('courses')">Explore Courses</button>
             </div>
+        </div>
+        <!-- Subtle Mandala Background -->
+        <div class="hero-mandala">
+            <svg width="100%" height="100%" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
+                <circle cx="400" cy="400" r="300" fill="none" stroke="#1a365d" stroke-width="0.5" opacity="0.03"/>
+                <circle cx="400" cy="400" r="250" fill="none" stroke="#1a365d" stroke-width="0.5" opacity="0.03"/>
+                <circle cx="400" cy="400" r="200" fill="none" stroke="#1a365d" stroke-width="0.5" opacity="0.03"/>
+                <path d="M400,100 Q500,200 600,300 T400,500 T200,300 T400,100" fill="none" stroke="#1a365d" stroke-width="0.5" opacity="0.02"/>
+                <path d="M100,400 Q200,300 300,200 T500,200 T700,400 T500,600 T300,600 T100,400" fill="none" stroke="#1a365d" stroke-width="0.5" opacity="0.02"/>
+            </svg>
+        </div>
         </div>
     </section>
 
@@ -156,24 +167,24 @@
             <p class="section-subtitle fade-in">Proven track record of excellence</p>
             <div class="results-grid">
                 <div class="result-card fade-in">
-                    <div class="result-number" data-target="95">0%</div>
-                    <div class="result-label">Success Rate</div>
-                    <p class="result-description">Students achieving their target scores</p>
+                    <div class="result-number" data-target="500">0+</div>
+                    <div class="result-label">Selections</div>
+                    <p class="result-description">Students selected in JEE and NEET</p>
                 </div>
                 <div class="result-card fade-in">
-                    <div class="result-number" data-target="500">0+</div>
-                    <div class="result-label">Top Rankers</div>
-                    <p class="result-description">Students securing top ranks in competitive exams</p>
+                    <div class="result-number" data-target="150">0+</div>
+                    <div class="result-label">Top Ranks</div>
+                    <p class="result-description">Students securing ranks under 1000</p>
                 </div>
                 <div class="result-card fade-in">
                     <div class="result-number" data-target="1000">0+</div>
                     <div class="result-label">Successful Students</div>
-                    <p class="result-description">Students admitted to premier institutions</p>
+                    <p class="result-description">Admissions to premier institutions</p>
                 </div>
                 <div class="result-card fade-in">
-                    <div class="result-number" data-target="98">0%</div>
-                    <div class="result-label">Satisfaction Rate</div>
-                    <p class="result-description">Students and parents satisfied with our coaching</p>
+                    <div class="result-number" data-target="95">0%</div>
+                    <div class="result-label">Success Rate</div>
+                    <p class="result-description">Students achieving their academic goals</p>
                 </div>
             </div>
         </div>
@@ -294,13 +305,63 @@
                 </svg>
             </div>
             <h3 class="modal-title">Thank You</h3>
-            <p class="modal-message">We have received your enquiry. Our team will contact you within 24 hours.</p>
+            <p class="modal-message">Thank you for submitting your details. Our team will contact you shortly.</p>
             <button class="modal-close" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- AI Doubts Chatbot Section -->
+    <div class="ai-chatbot-container" id="ai-chatbot-container">
+        <!-- Floating Chat Button -->
+        <button class="ai-chatbot-button" id="ai-chatbot-button" aria-label="Open AI Doubt Assistant">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span class="ai-button-text">AI Doubts</span>
+        </button>
+
+        <!-- Chat Panel -->
+        <div class="ai-chatbot-panel" id="ai-chatbot-panel">
+            <div class="ai-chatbot-header">
+                <div class="ai-header-content">
+                    <h3 class="ai-header-title">RISE AI – Doubt Assistant</h3>
+                    <p class="ai-header-subtitle">Get instant clarification on your academic doubts</p>
+                </div>
+                <button class="ai-close-button" id="ai-close-button" aria-label="Close chat">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="ai-chatbot-messages" id="ai-chatbot-messages">
+                <div class="ai-message ai-message-bot">
+                    <div class="ai-message-content">
+                        <p>Hello! I'm RISE AI, your academic doubt assistant. How can I help you today?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ai-chatbot-input-container">
+                <input type="text" class="ai-chatbot-input" id="ai-chatbot-input" placeholder="Type your doubt here..." />
+                <button class="ai-send-button" id="ai-send-button" aria-label="Send message">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="footer-mandala">
+            <svg width="100%" height="100%" viewBox="0 0 600 200" preserveAspectRatio="none">
+                <circle cx="300" cy="100" r="80" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+                <circle cx="300" cy="100" r="60" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+                <path d="M300,20 Q350,50 400,100 T300,180 T200,100 T300,20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+            </svg>
+        </div>
         <div class="container">
             <p>&copy; 2024 RISE Coaching Institute. All rights reserved.</p>
         </div>

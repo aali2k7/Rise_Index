@@ -402,3 +402,121 @@ function debounce(func, wait) {
 // Optimized scroll handler
 const optimizedScrollHandler = debounce(updateActiveNavLink, 10);
 window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+
+// ===== AI CHATBOT FUNCTIONALITY =====
+document.addEventListener('DOMContentLoaded', function() {
+    const chatbotButton = document.getElementById('ai-chatbot-button');
+    const chatbotPanel = document.getElementById('ai-chatbot-panel');
+    const closeButton = document.getElementById('ai-close-button');
+    const sendButton = document.getElementById('ai-send-button');
+    const chatInput = document.getElementById('ai-chatbot-input');
+    const messagesContainer = document.getElementById('ai-chatbot-messages');
+
+    // Open chatbot
+    if (chatbotButton && chatbotPanel) {
+        chatbotButton.addEventListener('click', function() {
+            chatbotPanel.classList.add('active');
+            chatInput.focus();
+        });
+    }
+
+    // Close chatbot
+    if (closeButton && chatbotPanel) {
+        closeButton.addEventListener('click', function() {
+            chatbotPanel.classList.remove('active');
+        });
+    }
+
+    // Mock AI responses
+    const mockResponses = [
+        "I understand your question. Let me help clarify this concept for you.",
+        "That's a great question. Here's a detailed explanation to help you understand better.",
+        "I can help you with that. Let me break down the concept step by step.",
+        "This is an important topic. Let me provide you with a comprehensive explanation.",
+        "I'd be happy to help clarify this. Here's what you need to know about this concept."
+    ];
+
+    function getMockResponse(userMessage) {
+        // Simple mock response based on keywords
+        const lowerMessage = userMessage.toLowerCase();
+        if (lowerMessage.includes('physics') || lowerMessage.includes('mechanics')) {
+            return "For physics concepts, I recommend focusing on understanding the fundamental principles first. Would you like me to explain a specific topic in detail?";
+        } else if (lowerMessage.includes('chemistry') || lowerMessage.includes('organic')) {
+            return "Chemistry requires a strong foundation in concepts. I can help you understand the underlying principles and their applications.";
+        } else if (lowerMessage.includes('math') || lowerMessage.includes('mathematics')) {
+            return "Mathematics is about practice and understanding concepts. Let me know which specific topic you'd like help with.";
+        } else if (lowerMessage.includes('biology') || lowerMessage.includes('neet')) {
+            return "Biology concepts are best understood through systematic study. I can guide you through the key topics and their interconnections.";
+        } else {
+            return mockResponses[Math.floor(Math.random() * mockResponses.length)];
+        }
+    }
+
+    function addMessage(text, isUser) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `ai-message ${isUser ? 'ai-message-user' : 'ai-message-bot'}`;
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'ai-message-content';
+        
+        const textP = document.createElement('p');
+        textP.textContent = text;
+        
+        contentDiv.appendChild(textP);
+        messageDiv.appendChild(contentDiv);
+        messagesContainer.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // Add user message
+        addMessage(message, true);
+        chatInput.value = '';
+
+        // Show typing indicator (optional)
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'ai-message ai-message-bot';
+        typingIndicator.innerHTML = '<div class="ai-message-content"><p>Thinking...</p></div>';
+        messagesContainer.appendChild(typingIndicator);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Simulate AI response delay
+        setTimeout(() => {
+            typingIndicator.remove();
+            const response = getMockResponse(message);
+            addMessage(response, false);
+        }, 1000);
+    }
+
+    // Send button click
+    if (sendButton && chatInput) {
+        sendButton.addEventListener('click', sendMessage);
+    }
+
+    // Enter key to send
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    }
+
+    // Close on outside click (optional)
+    document.addEventListener('click', function(e) {
+        if (chatbotPanel && chatbotPanel.classList.contains('active')) {
+            if (!chatbotPanel.contains(e.target) && 
+                !chatbotButton.contains(e.target) && 
+                e.target !== chatbotButton) {
+                // Optional: Uncomment to close on outside click
+                // chatbotPanel.classList.remove('active');
+            }
+        }
+    });
+});
